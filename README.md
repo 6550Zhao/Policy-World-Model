@@ -10,7 +10,7 @@ This repository will contain the official implementation of our paper:
 ## Citation
 If you find our work useful, please cite:
 ```bibtex
-@inproceedings{yourbibtex,
+@inproceedings{
   title={From Forecasting to Planning: Policy World Model for Collaborative State-Action Prediction},
   author={Zhida Zhao and Talas Fu and Yifan Wang and Lijun Wang and Huchuan Lu},
   booktitle={NeurIPS},
