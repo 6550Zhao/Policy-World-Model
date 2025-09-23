@@ -1,4 +1,5 @@
 # Policy-World-Model
+[![arXiv](https://img.shields.io/badge/arXiv-2501.01234-b31b1b.svg)](https://arxiv.org/abs/2501.01234)
 
 This repository will contain the official implementation of our paper:
 "From Forecasting to Planning: Policy World Model for Collaborative State-Action Prediction"
