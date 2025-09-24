@@ -2,7 +2,7 @@
 
 # **From Forecasting to Planning: Policy World Model for Collaborative State-Action Prediction**
 
-**Zhida Zhao**¹*· **Talas Fu**¹* · **Yifan Wang**¹ · **Lijun Wang**¹ · **Huchuan Lu**¹
+**Zhida Zhao**¹*· **Talas Fu**¹* · **Yifan Wang**¹ · **Lijun Wang**¹† · **Huchuan Lu**¹
 
 ¹ Dalian University of Technology
 
