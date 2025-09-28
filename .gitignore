@@ -1,1 +1,11 @@
 _temp
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+Gemfile.lock
+vendor/
+node_modules/
+*.gem
+*.swp
+*~

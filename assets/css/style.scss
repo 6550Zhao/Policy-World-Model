@@ -1,0 +1,77 @@
+---
+---
+
+@import "minima";
+
+/* Custom styles for Policy World Model */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Badge styles */
+.badge {
+    display: inline-block;
+    margin: 2px;
+}
+
+/* Image styles */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Center alignment */
+div[align="center"] {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Code block styles */
+pre, code {
+    background-color: #f6f8fa;
+    border-radius: 6px;
+    padding: 16px;
+    overflow-x: auto;
+}
+
+/* List styles */
+ul {
+    margin: 16px 0;
+}
+
+li {
+    margin: 8px 0;
+}
+
+/* Heading styles */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+/* Link styles */
+a {
+    color: #0969da;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    img {
+        width: 100%;
+    }
+}

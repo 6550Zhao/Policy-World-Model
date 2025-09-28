@@ -1,0 +1,56 @@
+# Jekyll configuration for GitHub Pages
+title: "Policy World Model (PWM)"
+description: "From Forecasting to Planning: Policy World Model for Collaborative State-Action Prediction"
+baseurl: "/Policy-World-Model"
+url: "https://6550Zhao.github.io"
+
+# GitHub Pages settings
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Markdown settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Exclude files from processing
+exclude:
+  - README_old.md
+  - _temp/
+  - ".git*"
+  - Gemfile
+  - Gemfile.lock
+  - "*.gemspec"
+  - vendor/
+
+# Include files
+include:
+  - "_pages"
+
+# Sass settings
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Collections
+collections:
+  pages:
+    output: true
+    permalink: /:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
