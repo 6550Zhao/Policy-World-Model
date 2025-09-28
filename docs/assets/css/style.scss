@@ -40,6 +40,23 @@ div[align="center"] {
     margin: 20px 0;
 }
 
+/* Author information styling */
+div[align="center"] strong {
+    font-weight: 600;
+}
+
+div[align="center"] em {
+    font-style: italic;
+    color: #666;
+}
+
+div[align="center"] code {
+    background-color: #f6f8fa;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
 /* Code block styles */
 pre, code {
     background-color: #f6f8fa;

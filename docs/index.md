@@ -8,19 +8,19 @@ description: From Forecasting to Planning - Policy World Model for Collaborative
 
 <div align="center">
 
-**Zhida Zhao**¹* · **Talas Fu**¹* · **Yifan Wang**¹ · **Lijun Wang**¹† · **Huchuan Lu**¹
+<strong>Zhida Zhao</strong>¹* · <strong>Talas Fu</strong>¹* · <strong>Yifan Wang</strong>¹ · <strong>Lijun Wang</strong>¹† · <strong>Huchuan Lu</strong>¹
 
 ¹ Dalian University of Technology
 
-*Equal contribution · †Corresponding author
+<em>*Equal contribution · †Corresponding author</em>
 
-📧 Contact: `{770153907, oyontalas}@mail.dlut.edu.cn`, `{wyfan, ljwang, lhchuan}@dlut.edu.cn`
+📧 Contact: <code>{770153907, oyontalas}@mail.dlut.edu.cn</code>, <code>{wyfan, ljwang, lhchuan}@dlut.edu.cn</code>
 
 </div>
 
 <div align="center" style="margin: 20px 0;">
 
-[![arXiv](https://img.shields.io/badge/arXiv-Coming%20Soon-b31b1b.svg)](https://arxiv.org/abs/placeholder) [![NeurIPS 2025](https://img.shields.io/badge/NeurIPS-2025-4b44ce.svg)](https://neurips.cc/virtual/2025/poster/115790) [![Project Page](https://img.shields.io/badge/Project-Page-green.svg)](https://6550zhao.github.io/Policy-World-Model) [![Code](https://img.shields.io/badge/Code-Coming%20Soon-green.svg)](https://github.com/6550Zhao/Policy-World-Model)
+<a href="https://arxiv.org/abs/placeholder"><img src="https://img.shields.io/badge/arXiv-Coming%20Soon-b31b1b.svg" alt="arXiv"></a> <a href="https://neurips.cc/virtual/2025/poster/115790"><img src="https://img.shields.io/badge/NeurIPS-2025-4b44ce.svg" alt="NeurIPS 2025"></a> <a href="https://6550zhao.github.io/Policy-World-Model"><img src="https://img.shields.io/badge/Project-Page-green.svg" alt="Project Page"></a> <a href="https://github.com/6550Zhao/Policy-World-Model"><img src="https://img.shields.io/badge/Code-Coming%20Soon-green.svg" alt="Code"></a>
 
 </div>
 
