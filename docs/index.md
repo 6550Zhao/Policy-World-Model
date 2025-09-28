@@ -12,10 +12,6 @@ description: From Forecasting to Planning - Policy World Model for Collaborative
 
 ¹ Dalian University of Technology
 
-<em>*Equal contribution · †Corresponding author</em>
-
-📧 Contact: <code>{770153907, oyontalas}@mail.dlut.edu.cn</code>, <code>{wyfan, ljwang, lhchuan}@dlut.edu.cn</code>
-
 </div>
 
 <div align="center" style="margin: 20px 0;">
