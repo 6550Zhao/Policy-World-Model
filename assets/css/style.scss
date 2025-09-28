@@ -16,6 +16,11 @@
     margin: 2px;
 }
 
+/* Fix for badge alignment */
+div[align="center"] a {
+    margin: 2px 4px;
+}
+
 /* Image styles */
 img {
     max-width: 100%;

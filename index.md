@@ -1,10 +1,24 @@
+---
+layout: default
+title: Policy World Model (PWM)
+description: From Forecasting to Planning - Policy World Model for Collaborative State-Action Prediction
+---
+
+# From Forecasting to Planning: Policy World Model for Collaborative State-Action Prediction
+
 <div align="center">
 
-# **From Forecasting to Planning: Policy World Model for Collaborative State-Action Prediction**
-
-**Zhida Zhao**¹*· **Talas Fu**¹* · **Yifan Wang**¹ · **Lijun Wang**¹† · **Huchuan Lu**¹
+**Zhida Zhao**¹* · **Talas Fu**¹* · **Yifan Wang**¹ · **Lijun Wang**¹† · **Huchuan Lu**¹
 
 ¹ Dalian University of Technology
+
+*Equal contribution · †Corresponding author
+
+📧 Contact: `{770153907, oyontalas}@mail.dlut.edu.cn`, `{wyfan, ljwang, lhchuan}@dlut.edu.cn`
+
+</div>
+
+<div align="center" style="margin: 20px 0;">
 
 [![arXiv](https://img.shields.io/badge/arXiv-Coming%20Soon-b31b1b.svg)](https://arxiv.org/abs/placeholder) [![NeurIPS 2025](https://img.shields.io/badge/NeurIPS-2025-4b44ce.svg)](https://neurips.cc/virtual/2025/poster/115790) [![Project Page](https://img.shields.io/badge/Project-Page-green.svg)](https://6550zhao.github.io/Policy-World-Model) [![Code](https://img.shields.io/badge/Code-Coming%20Soon-green.svg)](https://github.com/6550Zhao/Policy-World-Model)
 
