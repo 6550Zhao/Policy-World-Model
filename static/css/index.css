@@ -1,0 +1,237 @@
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+
+.footer .icon-link {
+    font-size: 25px;
+    color: #000;
+}
+
+.link-block a {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.dnerf {
+  font-variant: small-caps;
+}
+
+
+.teaser .hero-body {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+.teaser {
+  font-family: 'Google Sans', sans-serif;
+}
+
+
+.publication-title {
+}
+
+.publication-banner {
+  max-height: parent;
+
+}
+
+.publication-banner video {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  object-fit: fit;
+}
+
+.publication-header .hero-body {
+}
+
+.publication-title {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-authors {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-venue {
+    color: #555;
+    width: fit-content;
+    font-weight: bold;
+}
+
+.publication-awards {
+    color: #ff3860;
+    width: fit-content;
+    font-weight: bolder;
+}
+
+.publication-authors {
+}
+
+.publication-authors a {
+   color: #209CEF !important;
+}
+
+.publication-authors a:hover {
+    text-decoration: underline;
+}
+
+.author-block {
+  display: inline-block;
+}
+
+.publication-banner img {
+}
+
+.publication-authors {
+  /*color: #4286f4;*/
+}
+
+.publication-video {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+
+    overflow: hidden;
+    border-radius: 10px !important;
+}
+
+.publication-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.publication-body img {
+}
+
+.results-carousel {
+  overflow: hidden;
+}
+
+.results-carousel .item {
+  margin: 5px;
+  overflow: hidden;
+  padding: 20px;
+  font-size: 0;
+}
+
+.results-carousel video {
+  margin: 0;
+}
+
+.slider-pagination .slider-page {
+  background: #000000;
+}
+
+.eql-cntrb { 
+  font-size: smaller;
+}
+
+
+
+.video-row {
+  display: flex;
+  gap: 20px; /* Space between videos */
+  justify-content: center; /* Center align the videos */
+  flex-wrap: nowrap; /* Prevent wrapping: videos stay in the same row */
+  overflow-x: auto; /* Allow horizontal scrolling if the container is too narrow */
+}
+
+.video-row .item {
+  flex: 0 0 auto; /* Videos maintain their width and do not shrink */
+  width: 45%; /* Each video takes up 45% of the row's width */
+  max-width: 500px; /* Optional: Limit the maximum width of each video */
+}
+
+.video-row video {
+  width: 100%; /* Ensure the video fills its container */
+  height: auto; /* Maintain aspect ratio */
+  border: 1px solid #ccc; /* Optional: Add a border to the videos */
+  border-radius: 8px; /* Optional: Rounded corners */
+}
+
+/* Style for video containers */
+.video-container {
+  flex: 1; /* Allow equal width for all videos */
+  max-width: 420px; /* Optional: limits max width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  overflow: visible;
+}
+
+.video-container-big {
+  flex: 1; /* Allow equal width for all videos */
+  max-width: 700px; /* Optional: limits max width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  overflow: visible;
+}
+
+/* Wrapper to maintain 16:9 aspect ratio */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  background-color: #f8f8f8; /* Optional: light background */
+}
+
+/* Video element styles */
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the video fills the container without distortion */
+}
+
+
+/* Divider styles */
+.divider {
+  flex: 0 0 2px; /* Fixed width for the divider */
+  background-color: #ccc; /* Grey separator */
+  height: auto; /* Matches container height */
+}
+
+
+/* .video-container {
+  width: 30%;
+  display: inline-block;
+  margin: 1%;
+  vertical-align: top;
+}
+
+video {
+  width: 100%;
+  display: block;
+} */
+
+.description {
+  text-align: center;
+}
+
+.text-image-container {
+  display: flex;
+  /* 使用弹性盒模型布局 */
+  align-items: flex-start;
+  /* 上端对齐 */
+  justify-content: center;
+}
+
+ul {
+  text-align: left;
+  /* 确保文本左对齐 */
+  list-style-position: inside;
+  /* 列表标记与文本对齐 */
+  font-size: 16px;
+  list-style-type: circle;
+  /* 使用圆形作为项目符号 */
+}
+

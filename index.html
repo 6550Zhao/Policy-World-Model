@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <br>
+    <!-- <div class="logo" style="text-align: center;">
+        <a href="index.html">
+          <img src="./assets/images/logo.png">
+        </a>
+    </div> -->
+    <title>From Forecasting to Planning: Policy World Model for Collaborative State-Action Prediction
+    </title>
+
+    <script>
+        var task_map = {
+            "simple-object-manipulation": "simple_object_manipulation",
+            "visual-goal-reaching": "visual_goal_reaching",
+            "novel-concept-grounding": "novel_concept_grounding",
+            "one-shot-video-imitation": "one_shot_video_imitation",
+            "visual-constraint-satisfaction": "visual_constraint_satisfaction",
+            "visual-reasoning": "visual_reasoning"
+        };
+
+        function updateDemoVideo(category) {
+            // var demo = document.getElementById("single-menu-demos").value;
+            var task = document.getElementById(category + "-menu-tasks").value;
+            var inst = document.getElementById(category + "-menu-instances").value;
+
+            console.log(task_map[category], task, inst)
+
+            var video = document.getElementById(category + "-single-task-video");
+            video.src = "assets/videos/demos/" +
+                task_map[category] +
+                "/" +
+                task +
+                "/" +
+                inst +
+                ".mp4";
+            video.playbackRate = 2.0;
+            video.play();
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+
+
+
+<body>
+    <!-- Title and Author -->
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">From Forecasting to Planning: Policy World Model for Collaborative State-Action Prediction</h1>
+
+                        <h3 class="title is-4 conference-authors">
+                            <a target="_blank" href="https://neurips.cc/virtual/2025/poster/115790">NeurIPS 2025</a>
+                        </h3>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+                                <a target="_blank">Zhida&#160;Zhao</a><sup>1*</sup>,
+                                <a target="_blank">Talas&#160;Fu</a><sup>1*</sup>,
+                                <a target="_blank">Yifan&#160;Wang</a><sup>1</sup>,
+                                <a target="_blank">Lijun&#160;Wang</a><sup>1†</sup>,
+                                <a target="_blank">Huchuan&#160;Lu</a><sup>1</sup>
+                            </span>
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup>1</sup>Dalian University of Technology</span>
+                        </div>
+
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup>*&#160;</sup>Equal Contribution&#160;&#160;</span>
+                            <span class="author-block"><sup>†&#160;</sup>Corresponding Author&#160;&#160;</span>
+                        </div>
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- TODO PDF Link. -->
+                                <span class="link-block">
+                                    <a target="_blank" href="https://arxiv.org/abs/placeholder"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="ai ai-arxiv"></i>
+                                        </span>
+                                        <span>arXiv (Coming Soon)</span>
+                                    </a>
+                                </span>
+
+                                <span class="link-block">
+                                    <a target="_blank" href="https://arxiv.org/pdf/placeholder"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>PDF (Coming Soon)</span>
+                                    </a>
+                                </span>
+
+
+
+
+<!--                                 <span class="link-block">
+                                    <a href="" target="_blank" href="https://mars-eai.github.io/MARS-Challenge-Webpage/"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-challenge"></i>
+                                        </span>
+                                        <span>Challenge</span>
+                                    </a>
+                                </span> -->
+
+
+                                <!-- Code Link. -->
+                                <span class="link-block">
+                                    <a target="_blank" href="https://github.com/6550Zhao/Policy-World-Model"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fab fa-github"></i>
+                                        </span>
+                                        <span>Code</span>
+                                    </a>
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hero is-small">
+
+        <div class="hero-body">
+            <div class="container is-max-desktop has-text-centered">
+
+                <h2>
+                    <!-- <h2 class=""> <img src="static/images/highlight_logo.png" width="50"> Highlights</h2> -->
+                    <div class="text-image-container title is-3">
+                        <div>
+                            <img src="assets/images/highlight_logo.png" alt="highlight" width="50">
+                        </div>
+                        <div class="text">
+                            <p>Highlights</p>
+                        </div>
+                    </div>
+                </h2>
+
+
+                <div class="content has-text-justified">
+                    <p>
+                        <ul>
+                            <li><b>
+                                We introduce <span style="color: #E4A902;">Policy World Model (PWM)</span>, a unified framework that integrates world modeling and trajectory planning in a single architecture.
+                                </b></li>
+                            <br>
+                            <li><b>
+                                Our method leverages <span style="color: #E4A902;">action-free future forecasting</span> to mimic human-like anticipatory perception, enhancing planning performance without requiring action-labeled data.
+                                </b></li>
+                            <br>
+                            <li><b>
+                                We develop <span style="color: #E4A902;">dynamic parallel token generation</span> with context-guided compression, achieving efficient video forecasting while maintaining high-quality future state prediction.
+                                </b></li>
+                            <br>
+                            <li><b>
+                                Despite using only front camera input, our method <span style="color: #E4A902;">matches or exceeds</span> state-of-the-art approaches that rely on multi-view and multi-modal inputs.
+                                </b></li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- YouTube Video -->
+    <!-- <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered has-text-centered">
+                    <div class="column is-four-fifths">
+                        <div class="content">
+                            <h2>
+                                <div class="text-image-container title is-3">
+                                    <div>
+                                        <img src="assets/images/video_logo.png" alt="highlight" width="40">
+                                    </div>
+                                    <div class="text">
+                                        <p>Summary Video</p>
+                                    </div>
+                                </div>
+                            </h2>
+                            <div class="publication-video">
+                                <iframe src="https://www.youtube.com/embed/uiXKfOrfGrQ?rel=0&amp;showinfo=0"
+                                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+
+
+
+    <!-- Method Comparison -->
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="is-centered has-text-centered">
+                <div class="is-four-fifths">
+                    <h2 class="title is-3">Method Comparison</h2>
+                    <img src="assets/images/overview.png" class="interpolation-image" alt="Comparison of Video World Models"
+                        style="display: block; margin-left: auto; margin-right: auto" />
+                    <br>
+                    <div class="content has-text-justified">
+                        <p>
+                            <b>Comparison of video world models for autonomous driving.</b> 
+                            (a) Conventional video world models typically serve as data engines for simulation in pixel space, 
+                            operating in a decoupled manner where world modeling and planning are separate processes. 
+                            (b) Unified world models perform video generation and planning as separate tasks within the same architecture, 
+                            but without explicit synergy between the two components. 
+                            (c) Our proposed Policy World Model performs planning based on the learned world knowledge, 
+                            enabling collaborative state-action prediction that mimics human-like anticipatory perception.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Paper abstract -->
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Despite remarkable progress in driving world models, their potential for autonomous systems remains largely untapped: 
+                            the world models are mostly learned for world simulation and decoupled from trajectory planning. While recent efforts 
+                            aim to unify world modeling and planning in a single framework, the synergistic facilitation mechanism of world modeling 
+                            for planning still requires further exploration. In this work, we introduce a new driving paradigm named Policy World Model (PWM), 
+                            which not only integrates world modeling and trajectory planning within a unified architecture, but is also able to benefit 
+                            planning using the learned world knowledge through the proposed action-free future state forecasting scheme. Through collaborative 
+                            state-action prediction, PWM can mimic the human-like anticipatory perception, yielding more reliable planning performance. 
+                            To facilitate the efficiency of video forecasting, we further introduce a dynamically enhanced parallel token generation mechanism, 
+                            equipped with a context-guided tokenizer and an adaptive dynamic focal loss. Despite utilizing only front camera input, 
+                            our method matches or exceeds state-of-the-art approaches that rely on multi-view and multi-modal inputs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End paper abstract -->
+
+    <!-- Results Section -->
+    <section class="section hero">
+        <div class="container is-max-desktop">
+            <div class="is-centered has-text-centered">
+                <div class="is-four-fifths">
+                    <h2 class="title is-3">Performance Results</h2>
+                    <img src="assets/images/results_table.png" class="interpolation-image" alt="Performance Comparison Results"
+                        style="display: block; margin-left: auto; margin-right: auto" />
+                    <br>
+                    <div class="content has-text-justified">
+                        <p>
+                            <b>Performance Comparison:</b> Our Policy World Model achieves state-of-the-art performance on benchmark datasets. 
+                            Despite using only front camera input, our method matches or exceeds approaches that rely on multi-view and multi-modal inputs.
+                            The results demonstrate the effectiveness of our collaborative state-action prediction framework.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- overview -->
+    <section class="section hero">
+        <div class="container is-max-desktop">
+            <div class="is-centered has-text-centered">
+                <div class="is-four-fifths">
+                    <h2 class="title is-3">Method Overview</h2>
+                    <img src="assets/images/architecture.png" class="interpolation-image" alt="Policy World Model Architecture"
+                        style="display: block; margin-left: auto; margin-right: auto" />
+                    <br>
+                    <div class="content has-text-justified">
+                        <p>
+                            <b>Policy World Model for Unified Forecasting and Planning.</b> Policy World Model (PWM) introduces a unified framework 
+                            that integrates world modeling and trajectory planning. Unlike existing approaches that decouple world simulation from 
+                            decision-making, PWM leverages learned world knowledge to enhance planning through collaborative state-action prediction.
+                            <br><br>
+                            (a) PWM leverages its pre-trained world modeling to generate future frames, enabling seamless collaboration between 
+                            perception, prediction, and planning. The framework performs action-free future forecasting by first generating textual 
+                            descriptions of the current environment, then forecasting future video frames based on learned world knowledge, and 
+                            finally predicting optimal actions by considering both current observations and anticipated future states.
+                            <br><br>
+                            (b) Future video frames are compressed into compact latent representations guided by the initial frame, enabling 
+                            efficient parallel token generation while maintaining high-quality visual information for planning decisions. This 
+                            action-free forecasting scheme enables more reliable planning performance while maintaining training scalability.
+                            <br><br>
+                            <b><span style="color: #209CEF;">Key Features:</span></b> 
+                            Unified Architecture • Human-like Anticipatory Perception • Efficient Video Forecasting with Dynamic Parallel Token Generation
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Video Generation -->
+    <section class="section hero">
+        <div class="container is-max-desktop">
+            <div class="is-centered has-text-centered">
+                <div class="is-four-fifths">
+                    <h2 class="title is-3">Video Generation Architecture</h2>
+                    <img src="assets/images/video_gen.png" class="interpolation-image" alt="Video Generation Architecture"
+                        style="display: block; margin-left: auto; margin-right: auto" />
+                    <br>
+                    <div class="content has-text-justified">
+                        <p>
+                            <b>Pipeline for video world modeling.</b> (a) World modeling is conducted on action-free, highly compressed 
+                            video data using dynamically enhanced parallel prediction. Our system employs a context-guided tokenizer that 
+                            compresses each image into only 28 tokens, enabling parallel generation of all tokens within a single frame. 
+                            This approach allows video synthesis through next-frame prediction rather than next-token prediction, significantly 
+                            accelerating the forecasting process. (b) Comparison of token prediction formats and attention interactions, 
+                            showing how our method differs from traditional sequential token prediction approaches in terms of efficiency and 
+                            temporal modeling capabilities.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CLIPort Video -->
+    <!-- Video Demonstrations -->
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3 has-text-centered">Video Demonstrations</h2>
+                <p>
+                    <b>
+                        Videos demonstrating Policy World Model's performance will be available soon. These demonstrations will showcase 
+                        our method's capability in <span style="color: #E4A902;">collaborative state-action prediction</span> and 
+                        <span style="color: #E4A902;">action-free future forecasting</span> for autonomous driving scenarios.
+                    </b>
+                </p>
+
+                <br>
+                <div class="has-text-centered">
+                    <p><b>Coming Soon: Autonomous Driving Demonstrations</b></p>
+                </div>
+                <br>
+
+                <!-- Placeholder for future video content -->
+                <!-- 
+                <div class="video-row">
+                    <div class="video-container">
+                        <video playsinline controls muted loop>
+                            <source src="assets/videos/driving_demo_1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="description">Urban Driving Scenario</div>
+                    </div>
+
+                    <div class="video-container">
+                        <video playsinline controls muted loop>
+                            <source src="assets/videos/driving_demo_2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="description">Highway Driving Scenario</div>
+                    </div>
+                </div>
+                -->
+
+                <div class="content has-text-centered">
+                    <p style="font-style: italic; color: #666;">
+                        Video demonstrations will be added here to showcase Policy World Model's performance in various driving scenarios, 
+                        including world modeling, future state forecasting, and trajectory planning capabilities.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Omnigibson Video 
+    <section class="hero is-small">
+
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3 has-text-centered">Omnigibson Simulator Demos</h2>
+                <p> <b>
+                        These demos shows that Code-as-Monitor can <span style="color: #E4A902;">detect richer
+                            failures</span> (e.g., point, line, surface-level disturbances) with <span
+                            style="color: #E4A902;">lower computational cost</span> compared to frequent querying VLMs.
+                    </b></p>
+
+                <div id="results-carousel-teaser1" class="carousel results-carousel">
+                    <div class="item item-video7">
+                        <video poster="" id="video7" autoplay playsinline controls muted loop height="100%">
+                            <source src="assets/videos/Slot_pen.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="item item-video8">
+                        <video poster="" id="video8" autoplay playsinline controls muted loop height="100%">
+                            <source src="assets/videos/Stow_book.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="item item-video9">
+                        <video poster="" id="video9" autoplay playsinline controls muted loop height="100%">
+                            <source src="assets/videos/Pour_tea.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section> -->
+
+
+
+
+
+
+
+
+    <!--BibTex citation -->
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">BibTeX</h2>
+            <pre><code>@inproceedings{zhao2025pwm,
+  title={From Forecasting to Planning: Policy World Model for Collaborative State-Action Prediction},
+  author={Zhao, Zhida and Fu, Talas and Wang, Yifan and Wang, Lijun and Lu, Huchuan},
+  booktitle={Advances in Neural Information Processing Systems},
+  year={2025}
+}</code></pre>
+        </div>
+    </section>
+    <!--End BibTex citation -->
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+
+                        <p>
+                            This page was built using the <a
+                                href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                                target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                                href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+                            <!-- You are free to borrow the of this website, we just ask that you link back to this page in
+                            the footer.
+                            <br> This website is licensed under a <a rel="license"
+                                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                                Commons Attribution-ShareAlike 4.0 International License</a>. -->
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
