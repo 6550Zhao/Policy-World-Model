@@ -6,7 +6,7 @@
 
 ¹ Dalian University of Technology
 
-[![arXiv](https://img.shields.io/badge/arXiv-Coming%20Soon-b31b1b.svg)](https://arxiv.org/abs/placeholder) [![NeurIPS 2025](https://img.shields.io/badge/NeurIPS-2025-4b44ce.svg)](https://neurips.cc/virtual/2025/poster/115790) [![Project Page](https://img.shields.io/badge/Project-Page-green.svg)](https://github.com/6550Zhao/Policy-World-Model) [![Code](https://img.shields.io/badge/Code-Coming%20Soon-green.svg)](https://github.com/6550Zhao/Policy-World-Model)
+[![arXiv](https://img.shields.io/badge/arXiv-Coming%20Soon-b31b1b.svg)](https://arxiv.org/abs/placeholder) [![NeurIPS 2025](https://img.shields.io/badge/NeurIPS-2025-4b44ce.svg)](https://neurips.cc/virtual/2025/poster/115790) [![Project Page](https://img.shields.io/badge/Project-Page-green.svg)](https://6550zhao.github.io/Policy-World-Model/) [![Code](https://img.shields.io/badge/Code-Coming%20Soon-blue.svg)](https://github.com/6550Zhao/Policy-World-Model)
 
 </div>
 
