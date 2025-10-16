@@ -257,11 +257,6 @@ def main():
             from safetensors.torch import load_file
             state_dict = load_file(config.model.vq_model.pretrained_model_path)  # ['model']
             vq_model.load_state_dict(state_dict, strict=True)
-        else:
-            vq_model.init_modules(model='context_vq_model',
-                                  model_path=config.model.vq_model.pretrained_model_name_or_path)
-            vq_model.init_modules(model='dynamic_vq_model',
-                                  model_path=config.model.vq_model.pretrained_model_name_or_path_con)
         vq_model.eval()
         vq_model.requires_grad_(False)
 

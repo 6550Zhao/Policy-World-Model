@@ -9,16 +9,16 @@ experiment:
     output_dir: "${experiment.base_root}/resume_checkpoint/sft_nuscenes"
     ablation_name: ""
     max_train_examples_mmu: 50000
-    save_every: 5000 #每多少step保存一下权重
+    save_every: 5000
     eval_every: 5000
-    generate_every: 200 #1000，没多少轮次生成一个可视化
+    generate_every: 200
     log_every: 50
     log_grad_norm_every: 500000
-    eval_from_checkpoint: True #'latest'
-    eval_only: True #True #False
+    eval_from_checkpoint: True '
+    eval_only: True #False
     resume_dir: ""
-    img_show_path: '/19969306550/worldllm/visual_show/sft/nuscenes'
-    text_root: '/19969306550/worldllm/resume_checkpoint/sft_nuscenes/text_pair'
+    img_show_path: '${experiment.base_root}/visual_show/sft/nuscenes'
+    text_root: '${experiment.base_root}/resume_checkpoint/sft_nuscenes/text_pair'
     add_ego: false #true #
     add_cmd: true
     nfp_loss:
@@ -34,58 +34,55 @@ experiment:
       max_decode_batchsize: 2
       use_text_metrics: True
       use_trj_metrics: True
-      trj_anno_path: "/19969306550/worldllm/dataset/nuscenes/data_nusc/nuscenes2d_ego_temporal_infos_val.pkl"
-      eval_dir: "/19969306550/worldllm/resume_checkpoint/sft_nuscenes/sft_nusc_pre_stage2_no_ego_status_baseline_add_cmd_front_more_data/checkpoint_sft_nusc_pre_stage2_no_ego_status_baseline_add_cmd_front_more_data_step_28486_best"
+      trj_anno_path: "${experiment.base_root}/dataset/nuscenes/data_nusc/nuscenes2d_ego_temporal_infos_val.pkl"
+      eval_dir: ""# path/to/ckpt
 
 model:
     vq_model:
         type: "Compressive_magvit_v2"
-        vq_model_name: "/19969306550/worldllm/checkpoints/magvitv2"
+        vq_model_name: "${experiment.base_root}/checkpoints/magvitv2"
         mask_l: 0
         mask_h: 1
         latent_size: 4
         patch_size: 2
         num_vq_embeddings: 8192
         num_dyn_embeddings: 8192
-        pretrained_model_path: "/19969306550/worldllm/resume_checkpoint/vqgan_stage/2025-01-08-12:11:01-vq_LR_2e-4_w_a800_100w_step_2x/checkpoint-780000/unwrapped_model/diffusion_pytorch_model.safetensors" #"/13393729172/zzd/worldllm/resume_checkpoint/vqgan_stage/2024-12-28-07:02:55-vq_LR_2e-4_w_a800_100w_step/checkpoint-240000/unwrapped_model/diffusion_pytorch_model.safetensors"
-        pretrained_model_name_or_path: "/19969306550/worldllm/checkpoints/magvitv2/pytorch_model.safetensors"
-        pretrained_model_name_or_path_con: "/19969306550/worldllm/checkpoints/magvitv2"
-    clip_model: "/19969306550/worldllm/checkpoints/clip-vit-large-patch14-336"
+        pretrained_model_path: "" #path/to/vq_tokenizer/diffusion_pytorch_model.safetensors
+    clip_model: "${experiment.base_root}/checkpoints/clip-vit-large-patch14-336"
     cond_enable: true #false
     showo:
         load_from_showo: True #False
-        pretrained_model_path: "/19969306550/worldllm/checkpoints/show-o-w-clip-vit"
+        pretrained_model_path: "${experiment.base_root}/checkpoints/show-o-w-clip-vit"
         w_clip_vit: False #True
         vocab_size: 58498
         llm_vocab_size: 50295
-        llm_model_path: '/19969306550/worldllm/checkpoints/phi-1_5'
+        llm_model_path: '${experiment.base_root}/checkpoints/phi-1_5'
         codebook_size: 8192
         num_vq_tokens: 256
         num_new_special_tokens: 10  # <|soi|> <|eoi|> <|sov|> <|eov|> <|t2i|> <|mmu|> <|t2v|> <|v2v|> <|lvg|> <|pad|>
         dynamic_size: 8192
-        resume_from_pretrain: '/19969306550/worldllm/resume_checkpoint/pretraining_stage1/stage1_w_DFLoss/checkpoint_w_fvd_170000/unwrapped_model/pytorch_model.bin'
+        resume_from_pretrain: "" # path/to/pretrained model/pytorch_model.bin'
     eval:
-        i3d_path: '/19969306550/worldllm/checkpoints/i3d/i3d_torchscript.pt'
+        i3d_path: '${experiment.base_root}/checkpoints/i3d/i3d_torchscript.pt'
     gradient_checkpointing: True
 
 dataset:
-    dataset_use: "sft_nuscenes"#/19969306550/worldllm/dataset/opendv'/19969306550/worldllm/dataset/VidGen-1M'
+    dataset_use: "sft_nuscenes"
     clip_img_token: -200
     clip_vq_token: -100
-    json_root: '/19969306550/worldllm/dataset'
+    json_root: '${experiment.base_root}/dataset'
     params:
         add_caption_prompt: True
-        validation_prompts_file: "validation_prompts/showoprompts.txt"
         shuffle_buffer_size: 1000
-        num_workers: 8 #32
+        num_workers: 8
         pin_memory: True
         persistent_workers: True
         context_length: 2
         resolution_h: 128
         resolution_w: 224
     preprocessing:
-        max_seq_length: 2048 # for text tokens
-        resolution: [256, 448] #256
+        max_seq_length: 2048
+        resolution: [256, 448]
         center_crop: False
         random_flip: False
     ctd:
@@ -98,9 +95,9 @@ dataset:
       split_frames: 5
       prev_frames: 12
       next_frames: 12 #12
-      anno_path: '/19969306550/worldllm/dataset/nuscenes/data_nusc'
-      omini_path: '/19969306550/worldllm/dataset/nuscenes/ominidrive'
-      image_file: '/19969306550/worldllm/dataset/nuscenes'
+      anno_path: '${experiment.base_root}/dataset/nuscenes/data_nusc'
+      omini_path: '${experiment.base_root}/dataset/nuscenes/ominidrive'
+      image_file: '${experiment.base_root}/dataset/nuscenes'
       image_root: '/nuscenes'
       views:
 #        'NUSCENES_FRONT': 'nuscenes_front'
@@ -136,9 +133,9 @@ lr_scheduler:
         warmup_steps: 1000
 
 training:
-    gradient_accumulation_steps: 4 #4
+    gradient_accumulation_steps: 4
     batch_size_train_nus: 4
-    batch_size_val_nus: 16 #16
+    batch_size_val_nus: 16
     eval_only: false
     mixed_precision: "bf16"
     enable_tf32: True
@@ -151,9 +148,9 @@ training:
     label_smoothing: 0.0
     max_grad_norm: 4.0 #null
     guidance_scale: 0.0
-    generation_timesteps: 5 #12
+    generation_timesteps: 5
     lora_enable: False
     qa_coeff: 0.1
-    video_coeff: 0.3 #1.0
+    video_coeff: 0.3
     tj_coeff: 1.0
     motion_weight: True
