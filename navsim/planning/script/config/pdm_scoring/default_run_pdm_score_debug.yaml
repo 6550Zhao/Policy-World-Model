@@ -1,0 +1,24 @@
+hydra:
+  run:
+    dir: ${output_dir}
+  output_subdir: ${output_dir}/code/hydra           # Store hydra's config breakdown here for debugging
+  searchpath:                                       # Only <exp_dir> in these paths are discoverable
+    - pkg://navsim.planning.script.config.common 
+  job:
+    chdir: False
+
+
+metric_cache_path: ${oc.env:NAVSIM_EXP_ROOT}/navtest_cache # path to metric
+
+defaults:
+  - default_common
+  - default_evaluation
+  - default_scoring_parameters
+  - agent: ego_status_mlp_agent
+
+  - _self_
+  - experiment_name: ego_mlp_agent
+  - override train_test_split: navtest
+
+
+

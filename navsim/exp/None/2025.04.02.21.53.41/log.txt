@@ -1,0 +1,11 @@
+2025-04-02 21:54:46,755 INFO {/home/ubuntu/projects/zzd_file/Show-o/navsim/planning/script/builders/worker_pool_builder.py:20}  Building WorkerPool...
+2025-04-02 21:54:46,760 INFO {/home/ubuntu/projects/zzd_file/Show-o/nuplan/planning/utils/multithreading/worker_pool.py:101}  Worker: SingleMachineParallelExecutor
+2025-04-02 21:54:46,761 INFO {/home/ubuntu/projects/zzd_file/Show-o/nuplan/planning/utils/multithreading/worker_pool.py:102}  Number of nodes: 1
+Number of CPUs per node: 32
+Number of GPUs per node: 0
+Number of threads across all nodes: 32
+2025-04-02 21:54:46,761 INFO {/home/ubuntu/projects/zzd_file/Show-o/navsim/planning/script/builders/worker_pool_builder.py:31}  Building WorkerPool...DONE!
+2025-04-02 22:01:37,957 INFO {/home/ubuntu/projects/zzd_file/Show-o/run_pdm_score.py:136}  Starting pdm scoring of 103288 scenarios...
+2025-04-02 22:17:19,090 INFO {/home/ubuntu/projects/zzd_file/Show-o/run_pdm_score.py:46}  Starting worker in thread_id=2763a60a-c18a-4bcb-abda-73cac84ce4e5, node_id=0
+2025-04-02 22:19:18,210 INFO {/home/ubuntu/projects/zzd_file/Show-o/run_pdm_score.py:74}  Processing scenario 1 / 3678 in thread_id=2763a60a-c18a-4bcb-abda-73cac84ce4e5, node_id=0
+2025-04-02 22:19:26,052 WARNING {/home/ubuntu/projects/zzd_file/Show-o/run_pdm_score.py:99}  ----------- Agent failed for token 3d8bdae55dbd548c:

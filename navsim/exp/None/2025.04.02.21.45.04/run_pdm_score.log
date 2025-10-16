@@ -1,0 +1,10 @@
+[2025-04-02 21:46:08,712][navsim.planning.script.builders.worker_pool_builder][INFO] - Building WorkerPool...
+[2025-04-02 21:46:08,717][nuplan.planning.utils.multithreading.worker_pool][INFO] - Worker: SingleMachineParallelExecutor
+[2025-04-02 21:46:08,718][nuplan.planning.utils.multithreading.worker_pool][INFO] - Number of nodes: 1
+Number of CPUs per node: 32
+Number of GPUs per node: 0
+Number of threads across all nodes: 32
+[2025-04-02 21:46:08,718][navsim.planning.script.builders.worker_pool_builder][INFO] - Building WorkerPool...DONE!
+[2025-04-02 21:47:21,407][__main__][WARNING] - Missing metric cache for 103288 tokens. Skipping these tokens.
+[2025-04-02 21:47:21,407][__main__][WARNING] - Unused metric cache for 12146 tokens. Skipping these tokens.
+[2025-04-02 21:47:21,408][__main__][INFO] - Starting pdm scoring of 0 scenarios...

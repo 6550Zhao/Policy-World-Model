@@ -1,0 +1,40 @@
+[2025-04-02 20:54:18,759][navsim.planning.script.builders.worker_pool_builder][INFO] - Building WorkerPool...
+[2025-04-02 20:54:18,764][nuplan.planning.utils.multithreading.worker_pool][INFO] - Worker: SingleMachineParallelExecutor
+[2025-04-02 20:54:18,764][nuplan.planning.utils.multithreading.worker_pool][INFO] - Number of nodes: 1
+Number of CPUs per node: 32
+Number of GPUs per node: 0
+Number of threads across all nodes: 32
+[2025-04-02 20:54:18,764][navsim.planning.script.builders.worker_pool_builder][INFO] - Building WorkerPool...DONE!
+[2025-04-02 21:00:27,542][__main__][INFO] - Starting pdm scoring of 12146 scenarios...
+[2025-04-02 21:01:53,669][__main__][INFO] - Starting worker in thread_id=8b0a8aa2-5338-4033-b6fb-028c15a1bd41, node_id=0
+[2025-04-02 21:01:53,673][__main__][INFO] - Starting worker in thread_id=d29523fd-ec24-4708-b062-3b05f25d26b6, node_id=0
+[2025-04-02 21:01:53,677][__main__][INFO] - Starting worker in thread_id=ac0993d4-6126-4cde-a633-128d27080966, node_id=0
+[2025-04-02 21:01:53,699][__main__][INFO] - Starting worker in thread_id=bf9db032-a0f5-4233-ae16-e3e5c8e4545a, node_id=0
+[2025-04-02 21:01:53,740][__main__][INFO] - Starting worker in thread_id=9711f366-9d98-478a-8e97-b9311cc47df3, node_id=0
+[2025-04-02 21:01:53,752][__main__][INFO] - Starting worker in thread_id=4608cac9-2630-4244-a3ee-988c11c4d8d0, node_id=0
+[2025-04-02 21:01:53,784][__main__][INFO] - Starting worker in thread_id=ea0fee4e-8505-430d-a9ff-8a2edd61d035, node_id=0
+[2025-04-02 21:01:53,869][__main__][INFO] - Starting worker in thread_id=355197d0-735f-483a-9879-8bd80dfbb17f, node_id=0
+[2025-04-02 21:01:53,910][__main__][INFO] - Starting worker in thread_id=cbc5a265-d81f-41d8-8823-6cfac4c04970, node_id=0
+[2025-04-02 21:01:53,916][__main__][INFO] - Starting worker in thread_id=69f14225-e0f9-47e4-9ee4-06aaaa2d33e7, node_id=0
+[2025-04-02 21:01:53,922][__main__][INFO] - Starting worker in thread_id=fc27086a-4109-4491-9d8a-6be24f635ab9, node_id=0
+[2025-04-02 21:01:53,934][__main__][INFO] - Starting worker in thread_id=52f7f180-0d78-49c3-9a88-5a913892653d, node_id=0
+[2025-04-02 21:01:54,097][__main__][INFO] - Starting worker in thread_id=c09db800-d28a-417e-b8f6-5c79891315d2, node_id=0
+[2025-04-02 21:01:54,117][__main__][INFO] - Starting worker in thread_id=d9d1e57c-6872-4f18-b648-49c968d896c6, node_id=0
+[2025-04-02 21:01:54,217][__main__][INFO] - Starting worker in thread_id=26a6e69a-f27f-4a40-a3e9-79ab21b0d0ec, node_id=0
+[2025-04-02 21:01:54,256][__main__][INFO] - Starting worker in thread_id=49da8455-9c86-4185-a29b-d45d880a6540, node_id=0
+[2025-04-02 21:01:54,287][__main__][INFO] - Starting worker in thread_id=96e99c6b-8309-49b1-9288-c057709c1a33, node_id=0
+[2025-04-02 21:01:54,336][__main__][INFO] - Starting worker in thread_id=0cc5bf59-700e-4059-bed3-7b265c4bae78, node_id=0
+[2025-04-02 21:01:54,365][__main__][INFO] - Starting worker in thread_id=80e9641d-16a8-43ec-9ea5-f7012ea5981c, node_id=0
+[2025-04-02 21:01:54,445][__main__][INFO] - Starting worker in thread_id=2aef6e4d-5207-4276-a4c3-ddf74b6cd42a, node_id=0
+[2025-04-02 21:01:54,896][__main__][INFO] - Starting worker in thread_id=37de599d-999d-4fcb-99bf-5dde3ed62521, node_id=0
+[2025-04-02 21:01:54,934][__main__][INFO] - Starting worker in thread_id=3b69bf2d-b586-40d0-b548-a6fe8dee44d4, node_id=0
+[2025-04-02 21:01:55,024][__main__][INFO] - Starting worker in thread_id=3be20e5a-b497-4c34-bde4-19f173e181ba, node_id=0
+[2025-04-02 21:01:55,125][__main__][INFO] - Starting worker in thread_id=4c2a5549-0559-4b4d-b185-62e2f79cd3e9, node_id=0
+[2025-04-02 21:01:55,143][__main__][INFO] - Starting worker in thread_id=f4d5271b-8fc3-437e-9ea4-a1127fbdbf18, node_id=0
+[2025-04-02 21:01:55,225][__main__][INFO] - Starting worker in thread_id=36d033b7-652b-4690-8ea2-3407dac5befb, node_id=0
+[2025-04-02 21:01:55,393][__main__][INFO] - Starting worker in thread_id=fc9ca417-8fd8-4395-bb89-fd49b703e55d, node_id=0
+[2025-04-02 21:01:55,492][__main__][INFO] - Starting worker in thread_id=79d68463-2820-4b2c-8714-f5355e2030b0, node_id=0
+[2025-04-02 21:01:55,600][__main__][INFO] - Starting worker in thread_id=df7f1d52-1fa9-4bcf-92fe-52d3b1213ea9, node_id=0
+[2025-04-02 21:01:55,615][__main__][INFO] - Starting worker in thread_id=783ac78a-9c87-45e1-bc95-fe698010b978, node_id=0
+[2025-04-02 21:01:55,671][__main__][INFO] - Starting worker in thread_id=dcb17b7c-71c6-490b-930a-d0c7401086f5, node_id=0
+[2025-04-02 21:01:55,705][__main__][INFO] - Starting worker in thread_id=543ca50e-b3a8-431f-b5da-4da88009eecc, node_id=0
