@@ -1,0 +1,10 @@
+2025-04-02 21:46:08,712 INFO {/home/ubuntu/projects/zzd_file/Show-o/navsim/planning/script/builders/worker_pool_builder.py:20}  Building WorkerPool...
+2025-04-02 21:46:08,717 INFO {/home/ubuntu/projects/zzd_file/Show-o/nuplan/planning/utils/multithreading/worker_pool.py:101}  Worker: SingleMachineParallelExecutor
+2025-04-02 21:46:08,718 INFO {/home/ubuntu/projects/zzd_file/Show-o/nuplan/planning/utils/multithreading/worker_pool.py:102}  Number of nodes: 1
+Number of CPUs per node: 32
+Number of GPUs per node: 0
+Number of threads across all nodes: 32
+2025-04-02 21:46:08,718 INFO {/home/ubuntu/projects/zzd_file/Show-o/navsim/planning/script/builders/worker_pool_builder.py:31}  Building WorkerPool...DONE!
+2025-04-02 21:47:21,407 WARNING {/home/ubuntu/projects/zzd_file/Show-o/run_pdm_score.py:133}  Missing metric cache for 103288 tokens. Skipping these tokens.
+2025-04-02 21:47:21,407 WARNING {/home/ubuntu/projects/zzd_file/Show-o/run_pdm_score.py:135}  Unused metric cache for 12146 tokens. Skipping these tokens.
+2025-04-02 21:47:21,408 INFO {/home/ubuntu/projects/zzd_file/Show-o/run_pdm_score.py:136}  Starting pdm scoring of 0 scenarios...
