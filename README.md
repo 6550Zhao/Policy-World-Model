@@ -51,6 +51,7 @@
 
 - [ ] Release arXiv paper
 - [ ] Release training and evaluation code
+- [ ] Include usage instructions
 - [ ] Release model weights
 
 ---
