@@ -50,7 +50,7 @@
 ## 🎯 TODO List
 
 - [ ] Release arXiv paper
-- [ ] Release training and evaluation code
+- [x] Release training and evaluation code
 - [ ] Provide guidelines
 - [ ] Release model weights
 
@@ -59,7 +59,7 @@
 You can download the released model weights from the following link:
 | task  | Model Weights |
 |-----------|----------------|
-| Tokenizer | [Download](https://your-nuscenes-link.com) |
+| Tokenizer | [Download](https://huggingface.co/zzzz12334/Policy_World_Model/tree/main/tokenizer) |
 | nuScenes | [Download](https://huggingface.co/zzzz12334/Policy_World_Model/tree/main/ckpt_sft_navsim) |
 | NAVSIM   | [Download](https://huggingface.co/zzzz12334/Policy_World_Model/tree/main/ckpt_sft_nuscenes_wo_ego) |
 ---
