@@ -55,7 +55,13 @@
 - [ ] Release model weights
 
 ---
-
+## 🧠 Models
+You can download the released model weights from the following link:
+| task  | Model Weights |
+|-----------|----------------|
+| nuScenes | [Download](https://your-nuscenes-link.com) |
+| NAVSIM   | [Download](https://your-navsim-link.com) |
+---
 ## 🙏 Acknowledgements
 
 We thank the reviewers and the research community for their valuable feedback and support.
