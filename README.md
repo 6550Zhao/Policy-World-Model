@@ -22,7 +22,7 @@
 
 <!-- Project Main Figure Placeholder -->
 <div align="center">
-<img src="assets/paper_figure2.pdf" alt="Policy World Model Overview" width="800">
+<img src="assets/paper_figure.png" alt="Policy World Model Overview" width="800">
 </div>
 
 ---
