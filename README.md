@@ -59,6 +59,7 @@
 You can download the released model weights from the following link:
 | task  | Model Weights |
 |-----------|----------------|
+| Tokenizer | [Download](https://your-nuscenes-link.com) |
 | nuScenes | [Download](https://your-nuscenes-link.com) |
 | NAVSIM   | [Download](https://your-navsim-link.com) |
 ---
