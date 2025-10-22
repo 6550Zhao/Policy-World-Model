@@ -59,17 +59,17 @@
 You can download the released model weights from the following link:
 ---
 
-### 🔹 Tokenizer
-| Item | Link |
-|:-----|:-----|
-| **Model Weights** | [Download](https://huggingface.co/zzzz12334/Policy_World_Model/tree/main/tokenizer) |
+### 🔹 Stage 1&2
+| stage | Model Weights |stage | Model Weights |
+|:------:|:-----:|:----:|:------------:|
+| **Tokenizer** | [Download](https://huggingface.co/zzzz12334/Policy_World_Model/tree/main/tokenizer) | **Pretrain** | [Download](https://huggingface.co/zzzz12334/Policy_World_Model/tree/main/pre-training) |
 ---
-### 🔹 nuScenes
+### 🔹 Stage 3
+#### 🔹 nuScenes
 | LPIPS↓ | PSNR↑ | FVD↓ | Avg.L2 (m)↓ | Avg.Col (%)↓ | Model Weights |
 |:------:|:-----:|:----:|:------------:|:------------:|:-------------:|
 | 0.22   | 23.07 | 67.13| 0.78         | 0.07         | [Download](https://huggingface.co/zzzz12334/Policy_World_Model/tree/main/ckpt_sft_nuscenes_wo_ego) |
----
-### 🔹 NavSim
+#### 🔹 NavSim
 | LPIPS↓ | PSNR↑ | FVD↓ | NC↑ | DAC↑ | EP↑ | TTC↑ | Comf.↑ | PDMS↑ | Model Weights |
 |:------:|:-----:|:----:|:--:|:--:|:--:|:--:|:-----:|:---:|:-------------:|
 | 0.23   | 21.57 | 85.95| 98.6 | 95.9 | 81.8 | 95.4 | 100.0 | 88.1 | [Download](https://huggingface.co/zzzz12334/Policy_World_Model/tree/main/ckpt_sft_navsim) |
