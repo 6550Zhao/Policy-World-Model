@@ -60,8 +60,8 @@ You can download the released model weights from the following link:
 | task  | Model Weights |
 |-----------|----------------|
 | Tokenizer | [Download](https://your-nuscenes-link.com) |
-| nuScenes | [Download](https://your-nuscenes-link.com) |
-| NAVSIM   | [Download](https://your-navsim-link.com) |
+| nuScenes | [Download](https://huggingface.co/zzzz12334/Policy_World_Model/tree/main/ckpt_sft_navsim) |
+| NAVSIM   | [Download](https://huggingface.co/zzzz12334/Policy_World_Model/tree/main/ckpt_sft_nuscenes_wo_ego) |
 ---
 ## 🙏 Acknowledgements
 
