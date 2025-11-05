@@ -153,8 +153,6 @@ def main():
         stream_handler.setFormatter(formatter)
         logging.getLogger().addHandler(stream_handler)
 
-    os.environ["WANDB_MODE"] = "offline"  # debug
-    os.environ["WANDB_DIR"] = "/19969306550/PolicyWorldModel/camera_ready_exp"
     total_batch_size_per_gpu = config.training.batch_size_train_nus #must have context frame tokens
     total_batch_size = config.training.batch_size_train_nus* config.training.gradient_accumulation_steps
 
