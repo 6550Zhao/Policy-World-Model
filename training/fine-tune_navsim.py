@@ -380,11 +380,6 @@ def main():
             state_dict = torch.load(f'{path}/unwrapped_model/pytorch_model.bin', map_location="cpu")
             model.load_state_dict(state_dict, strict=True)
             del state_dict
-
-    # ╔═════════════════════════════════════════════════════════════════════════════════════════════════╗
-    # ║                                     Prepare accelerator                                         ║
-    # ╚═════════════════════════════════════════════════════════════════════════════════════════════════╝
-
     logger.info("Preparing model, optimizer and dataloaders")
     model, optimizer, lr_scheduler = accelerator.prepare(model, optimizer, lr_scheduler)
     vq_model = vq_model.to(accelerator.device)
@@ -395,9 +390,9 @@ def main():
         mask_dtype = model.showo.model.embed_tokens.weight.dtype
 
 
-    # ╔═════════════════════════════════════════════════════════════════════════════════════════════════╗
-    # ║                                            Training                                             ║
-    # ╚═════════════════════════════════════════════════════════════════════════════════════════════════╝
+    ####################
+    #     Training     #
+    ####################
 
     logger.info("***** Running training *****")
     logger.info(f"  Num training steps = {config.training.max_train_steps}")
@@ -624,7 +619,7 @@ def main():
                     data_time_m.reset()
 
                 # Save model checkpoint
-                if accelerator.is_main_process and cur_epoch!=epoch and epoch>=config.training.save_start_epoch:#每10000步保存一次权重
+                if accelerator.is_main_process and cur_epoch!=epoch and epoch>=config.training.save_start_epoch:
                     save_checkpoint(model, config, accelerator, global_step + 1)
                 if cur_epoch != epoch and (epoch>=config.training.eval_start_epoch or epoch==5):# and  ((global_step) % config.experiment.eval_every == 0 and global_step>10) or
                     if accelerator.num_processes > 1:
@@ -722,7 +717,7 @@ def visualize_predictions(model,
             t2d_v = np.stack(t2d_v, 0)
             output_root = os.path.join(config.experiment.output_dir, "visual_gif", "train")
             os.makedirs(output_root, exist_ok=True)
-            imageio.mimsave(os.path.join(output_root, f"{global_step}_{token[batch_ids]}.gif"), t2d_v, fps=10, loop=0)  # fps 是帧率
+            imageio.mimsave(os.path.join(output_root, f"{global_step}_{token[batch_ids]}.gif"), t2d_v, fps=10, loop=0)
             t2d_v = np.transpose(t2d_v, (0, 3, 1, 2))
             # video display
             wandb.log({"Original v.s. Reconstructed v.s. Predicted": wandb.Video(t2d_v, fps=10, format="webm", caption=token[batch_ids])}, step=global_step)
@@ -833,7 +828,7 @@ def evaluate(model,
                                                                                 next_img_dynamic=next_img_dynamic,
                                                                                 ego_status=ego_status,
                                                                                 future_trajectories=future_trajectories,
-                                                                                condition_len=context_length)#pad:50295,多了一个end token
+                                                                                condition_len=context_length)#pad:50295
 
                 len_seq = input_ids.shape[-1]
                 attention_mask = create_attention_mask_for_nusc(input_ids, # (B,1,L,L)
@@ -894,7 +889,7 @@ def evaluate(model,
             # #video metrics:mse,psnr,ssim,lpips
             if config.experiment.eval.use_frame_metrics:
                 with torch.autocast("cuda", dtype=torch.float32, enabled=False):
-                    mse_value, psnr_value, ssim_value, lpips_value = accelerator.unwrap_model(evaluator)(pixel_values.clamp(0.0, 1.0), predicted_images)  # pixel_values can be 1.0000001192092896 numerically
+                    mse_value, psnr_value, ssim_value, lpips_value = accelerator.unwrap_model(evaluator)(pixel_values.clamp(0.0, 1.0), predicted_images)
                     # mse_value, psnr_value, ssim_value, lpips_value = accelerator.unwrap_model(evaluator)(pixel_values.clamp(0.0, 1.0)[:,:-1], predicted_images[:, 2:])
                     mse_values.append(accelerator.gather(mse_value.repeat(batch_size)))
                     psnr_values.append(accelerator.gather(psnr_value.repeat(batch_size)))
@@ -911,7 +906,7 @@ def evaluate(model,
             # action metrics
             if config.experiment.eval.use_trj_metrics:
                 samples_eval = []
-                for trj_i in range(gen_trj.shape[0]):#batch
+                for trj_i in range(gen_trj.shape[0]):
                     gathered_gen_trj = accelerator.gather(gen_trj[trj_i][None, ...].contiguous())
                     gathered_token = accelerator.gather(token_encode[trj_i][None, ...].contiguous())
                     assert gathered_gen_trj.shape[0] == gathered_token.shape[0], ( f"Shape mismatch: gathered_gen_trj has {gathered_gen_trj.shape[0]} samples, "
@@ -934,12 +929,11 @@ def evaluate(model,
                     num_visual+=1
                     # if i == 11:
                     #     print("debug here")
-                    o_images = (255.0*pixel_values[b_sample]).permute(0, 2, 3, 1).cpu().numpy().astype(np.uint8)#输入时候是(B,t,3,h,w)->(T,H,W,3)
+                    o_images = (255.0*pixel_values[b_sample]).permute(0, 2, 3, 1).cpu().numpy().astype(np.uint8)
                     r_images = (255.0*recons_images[b_sample]).permute(0, 2, 3, 1).cpu().numpy().astype(np.uint8)
                     p_images = (255.0*predicted_images[b_sample]).permute(0, 2, 3, 1).cpu().numpy().astype(np.uint8)
 
                     t2d_v = video_concate(o_images, r_images, p_images, context_length)
-                    # logger.info("gen video done")
                     t2d_v = np.stack(t2d_v, 0)
                     val_root = os.path.join(output_root, "visual_gif", "val")
                     os.makedirs(val_root, exist_ok=True)
