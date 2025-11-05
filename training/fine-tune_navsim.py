@@ -529,7 +529,7 @@ def main():
                                                                                 next_img_dynamic=next_img_dynamic,
                                                                                 ego_status=ego_status,
                                                                                 future_trajectories=future_trajectories,
-                                                                                condition_len=context_length) #pad:50295,多了一个end token
+                                                                                condition_len=context_length)
 
                 len_seq = input_ids.shape[-1]
                 attention_mask = create_attention_mask_for_nusc(input_ids, # (B,1,L,L)
@@ -711,7 +711,6 @@ def visualize_predictions(model,
             predicted_images = torch.clamp((predicted_images + 1.0) / 2.0, min=0.0, max=1.0)
             predicted_images *= 255.0
             predicted_images = predicted_images[0][2:].permute(0, 2, 3, 1).cpu().numpy().astype(np.uint8)
-            # pred_images = torch.cat((recons_images_prev[2:], predicted_images[2:]), dim=0).permute(0, 2, 3, 1).cpu().numpy().astype(np.uint8)
             t2d_v = video_concate(images, recons_images, predicted_images)
 
             t2d_v = np.stack(t2d_v, 0)
