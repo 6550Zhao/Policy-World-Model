@@ -49,10 +49,10 @@
 
 ## 🎯 TODO List
 
-- [ ] Release arXiv paper
+- [x] Release arXiv paper
 - [x] Release training and evaluation code
+- [x] Release model weights
 - [ ] Provide guidelines
-- [ ] Release model weights
 
 ---
 ## 🧠 Models
