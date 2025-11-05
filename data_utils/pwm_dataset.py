@@ -274,28 +274,12 @@ class DatasetNuScenes(Dataset):#camera ready dataset
             sample = self.nusc.get('sample', sample['next'])
         return True
     def data_augmentation(self, images):
-        # if self.aug_enable:
-        #     # i, j, h, w = self.get_crop_params(images[0], self.random_resized_crop_scale)#, self.random_resized_crop_ratio)
-        #     fn_idx, brightness_factor, contrast_factor, saturation_factor, hue_factor = self.get_jittor_params(
-        #         self.aug['brightness'], self.aug['contrast'], self.aug['saturation'], self.aug['hue']
-        #     )
+
         con_len_count = 0
         new_images_context = []
         new_images = []
-        tensor = transforms.ToTensor()#自动归一了
+        tensor = transforms.ToTensor()
         for image_0 in images:
-            # if self.aug_enable:
-                # image = F.resized_crop(image, i, j, h, w, [self.resolution_h, self.resolution_w])
-                # for fn_id in fn_idx:
-                #     if fn_id == 0 and brightness_factor is not None:
-                #         image = F.adjust_brightness(image, brightness_factor)
-                #     elif fn_id == 1 and contrast_factor is not None:
-                #         image = F.adjust_contrast(image, contrast_factor)
-                #     elif fn_id == 2 and saturation_factor is not None:
-                #         image = F.adjust_saturation(image, saturation_factor)
-                #     elif fn_id == 3 and hue_factor is not None:
-                #         image = F.adjust_hue(image, hue_factor)
-                # if con_len_count%self.split_frames==0 and len(new_images_context)<(len(images)//self.split_frames)-1: #context image process
             if con_len_count in [0, 1]:
                 image = transforms.Resize((self.Con_resolution_h, self.Con_resolution_w), interpolation=transforms.InterpolationMode.BICUBIC)(image_0)
                 image = transforms.CenterCrop((self.Con_resolution_h, self.Con_resolution_w))(image)
@@ -352,25 +336,18 @@ class DatasetNuScenes(Dataset):#camera ready dataset
             sized crop, keeping the original aspect ratio.
         """
         _, height, width = F.get_dimensions(img)
-        area = height * width  # 原图面积
+        area = height * width
 
-        original_ratio = width / height  # 原始宽高比
+        original_ratio = width / height
 
-        for _ in range(3):  # 最多尝试10次
-            # 随机裁剪面积比例
+        for _ in range(3):
             target_area = area * torch.empty(1).uniform_(scale[0], scale[1]).item()
-
-            # 根据原始宽高比计算裁剪框的宽和高
             h = int(round(math.sqrt(target_area / original_ratio)))
             w = int(round(h * original_ratio))
-
-            # 检查是否超出图像范围
             if 0 < w <= width and 0 < h <= height:
-                i = torch.randint(0, height - h + 1, size=(1,)).item()  # 随机顶部坐标
-                j = torch.randint(0, width - w + 1, size=(1,)).item()  # 随机左侧坐标
+                i = torch.randint(0, height - h + 1, size=(1,)).item()
+                j = torch.randint(0, width - w + 1, size=(1,)).item()
                 return i, j, h, w
-
-        # 如果未找到合适框，回退到中心裁剪
         if width > height:
             w = int(round(height * original_ratio))
             h = height
@@ -398,7 +375,6 @@ class DatasetNuScenes(Dataset):#camera ready dataset
         else:
             raise NotImplementedError
     def get_segment(self, num_frames, start_index, end_index, select_num, short_flag=False, mode=None):
-        # 生成从 context_num 到 num_frames - 1 的索引
         start_index = start_index
         end_index = end_index
         if start_index >= num_frames or end_index >= num_frames:
@@ -406,22 +382,22 @@ class DatasetNuScenes(Dataset):#camera ready dataset
             raise ValueError("start_index must be less than num_frames")
         indices = np.arange(start_index, end_index)
         if mode == 'dynamic':
-            weights = indices - start_index + 1  # 权重从 1 开始，越大的索引权重越大
+            weights = indices - start_index + 1
         else:
-            weights = np.ones_like(indices)  # 所有索引的权重都为 1
-        # 随机选择 select_num 个索引
+            weights = np.ones_like(indices)
+        # select_num index
         if short_flag:
             selected_indices = np.random.choice(indices, size=select_num, replace=True, p=weights/weights.sum())
         else:
             selected_indices = np.random.choice(indices, size=select_num, replace=False, p=weights/weights.sum())
 
-        return selected_indices.tolist()  # 返回列表格式的索引
+        return selected_indices.tolist()
     def _load_image(self, img_path):
         # Implement your image loading logic here
         # For example, using PIL:
 
         img = Image.open(img_path)
-        # print(f"Loading image from: {img_path}")  # 调试信息
+        # print(f"Loading image from: {img_path}")
         # img = img.resize((224, 224))  # Resize if necessary
         # img = torch.tensor(np.array(img)).permute(2, 0, 1)  # Convert to tensor and rearrange dimensions
         return img
@@ -451,8 +427,8 @@ class DatasetNuScenes(Dataset):#camera ready dataset
     def _get_images(self, frame_token):
         images = {}
         images_prev_root, images_next_root = self.image_path[frame_token]['prev'], self.image_path[frame_token]['next']
-        len_prev_max = self.prev_frames#12 #1s
-        len_next_max = self.next_frames #1s
+        len_prev_max = self.prev_frames
+        len_next_max = self.next_frames
         #prev
         prev_img = []
         next_img = []
@@ -490,12 +466,12 @@ class DatasetNuScenes(Dataset):#camera ready dataset
         t_n,c_n,h_n,w_n = next_img_dynamic.shape
         # if t_p < self.fps or t_n<self.fps:
         #     print("debug in here")
-        if prev_img_dynamic.shape[0] == 1:#此时没有之前帧，对应每个场景的第一个样本
+        if prev_img_dynamic.shape[0] == 1:
             assert prev_img_context.shape[0]==1
             prev_img_context = torch.cat([prev_img_context, prev_img_context], dim=0)#assert prev_img_context.shape[0]==2
         prev_img_dynamic = torch.cat([torch.ones((self.prev_frames-t_p,c_p,h_p,w_p), dtype=torch.float32)*-100, prev_img_dynamic], dim=0)#pad using -100
 
-        if next_img_dynamic.shape[0] == 1: #最后一个样本
+        if next_img_dynamic.shape[0] == 1:
             assert next_img_context.shape[0] == 1
             next_img_context = torch.cat([next_img_context, next_img_context], dim=0)
         next_img_dynamic = torch.cat([next_img_dynamic, torch.ones((self.next_frames-t_n,c_n,h_n,w_n), dtype=torch.float32)*-100], dim=0)#pad using -100
@@ -507,15 +483,15 @@ class DatasetNuScenes(Dataset):#camera ready dataset
         omini_anno = self.omini_annos[idx][0]
         token = omini_anno[-1]['token']
 
-        desc_a = omini_anno[1]['a'] #图像描述
-        action_a = omini_anno[-3]['a'] #动作
-        planning_a = omini_anno[-2]['plan'] #规划的坐标
+        desc_a = omini_anno[1]['a'] #description
+        action_a = omini_anno[-3]['a'] #action description
+        planning_a = omini_anno[-2]['plan'] #trajectory
         plan_mask = omini_anno[-2]['plan_mask']
         scene_name = omini_anno[-2]['scene_name']
         prev_img, next_img = self._get_images(token)
         images_prev_miss, images_next_miss = self.prev_frames-len(prev_img), self.next_frames-len(next_img)
         assert images_prev_miss>=0 and images_next_miss>=0
-        # context一般长度为2,dynamic一般长度为10，如果不够用0补
+
         prev_img_context, prev_img_dynamic = self.data_augmentation(prev_img)
         next_img_context, next_img_dynamic = self.data_augmentation(next_img)
         #using -100 as pad value
@@ -580,7 +556,7 @@ class DatasetNavsim(Dataset):
         self.nuplan_10hz_logs = config.dataset.nuplan_10hz_logs
         self.nuplan_10hz_split = ['train','val'] if split == 'train' else ['test']
         self.camera_views = [k for k, v in config.dataset.ctd.views.items() if v != '']
-        self.num_images = config.dataset.ctd.segment_length  # 过去2s，那么就是2x10=20帧 frames condition
+        self.num_images = config.dataset.ctd.segment_length  #
         self.condition_frames = config.dataset.ctd.condition_length  # 2 for one second
 
         self.Con_resolution_h, self.Con_resolution_w = config.dataset.ctd.c_resolution
@@ -643,8 +619,8 @@ class DatasetNavsim(Dataset):
         images = {}
         agent_raw_camera_path = self.get_raw_camera(token)#10hz
         images_prev_info, images_next_info = [agent_raw_camera_path['past_frame_info'][view] for view in self.camera_views], [agent_raw_camera_path['future_frame_info'][view] for view in self.camera_views]
-        len_prev_max = self.prev_frames#12 #1s
-        len_next_max = self.next_frames #1s
+        len_prev_max = self.prev_frames
+        len_next_max = self.next_frames
         #prev
         prev_img = []
         next_img = []
@@ -664,15 +640,11 @@ class DatasetNavsim(Dataset):
         return prev_img, next_img
 
     def data_augmentation(self, images):
-        # if self.aug_enable:
-        #     # i, j, h, w = self.get_crop_params(images[0], self.random_resized_crop_scale)#, self.random_resized_crop_ratio)
-        #     fn_idx, brightness_factor, contrast_factor, saturation_factor, hue_factor = self.get_jittor_params(
-        #         self.aug['brightness'], self.aug['contrast'], self.aug['saturation'], self.aug['hue']
-        #     )
+
         con_len_count = 0
         new_images_context = []
         new_images = []
-        tensor = transforms.ToTensor()#自动归一
+        tensor = transforms.ToTensor()
         for image_0 in images:
             if con_len_count in [0, 1]:
                 image = transforms.Resize((self.Con_resolution_h, self.Con_resolution_w), interpolation=transforms.InterpolationMode.BICUBIC)(image_0)
@@ -691,12 +663,10 @@ class DatasetNavsim(Dataset):
     def check_len(self,prev_img_dynamic_2s):
         missing_frames = self.fps - prev_img_dynamic_2s.shape[0]
         if missing_frames > 0:
-            # 复制第一帧 missing_frames 次
             repeated_first_frame = prev_img_dynamic_2s[0:1].expand(missing_frames, -1, -1, -1)
-            # 拼接补全的帧和原始帧
             padded_frames = torch.cat([repeated_first_frame, prev_img_dynamic_2s], dim=0)
         else:
-            padded_frames = prev_img_dynamic_2s  # 无需补全
+            padded_frames = prev_img_dynamic_2s
         return padded_frames
     def _load_image(self, root, filesplit, imgname):
         # Implement your image loading logic here
@@ -708,7 +678,7 @@ class DatasetNavsim(Dataset):
         raise FileNotFoundError
     def EgoStatusFeatureBuilder(self, agent_input: AgentInput) -> torch.Tensor:
         """Inherited, see superclass."""
-        ego_status = agent_input.ego_statuses[-1]#当前帧的自车信息
+        ego_status = agent_input.ego_statuses[-1]#
         velocity = torch.tensor(ego_status.ego_velocity)
         acceleration = torch.tensor(ego_status.ego_acceleration)
         driving_command = torch.tensor(ego_status.driving_command)
@@ -718,7 +688,7 @@ class DatasetNavsim(Dataset):
     def get_obs_from_agent_input(self, agent_input: AgentInput) -> torch.Tensor:
         resized_image = []
         for idx in [-3, -1]:
-            cameras = agent_input.cameras[idx]  # 当前观测o
+            cameras = agent_input.cameras[idx]  #
             # Crop to ensure 4:1 aspect ratio
             l0 = cameras.cam_l0.image[:, 104:-104] #[28:-28, 416:-416] #x=480x416/1920=104, y=270x28/1080=7
             f0 = cameras.cam_f0.image #[28:-28]
@@ -737,16 +707,16 @@ class DatasetNavsim(Dataset):
     def __getitem__(self, idx):
         token = self.metric_cache_loader.tokens[idx]
         # self.cache = metric_cache
-        #input 获取
+        #input
         agent_input = self.scene_loader.get_agent_input_from_token(token)
-        scene = self.scene_loader.get_scene_from_token(token)#past 的最后一个是当前的观测
+        scene = self.scene_loader.get_scene_from_token(token)
         scene_log = scene.scene_metadata.log_name
         future_trajectory = self.compute_targets(scene)#gt trajectory，(8,3)
-        #计算指标
+
         prev_img, next_img = self._get_images(token)
         images_prev_miss, images_next_miss = self.prev_frames-len(prev_img), self.next_frames-len(next_img)
         assert images_prev_miss>=0 and images_next_miss>=0
-        # context长度为2,dynamic长度为10，如果不够用0补
+
         next_img = [prev_img[-2], prev_img[-1], *next_img]#adding current observation
         prev_img_context_1s, prev_img_dynamic_1s = self.data_augmentation(prev_img[:self.fps])
         prev_img_context_2s, prev_img_dynamic_2s = self.data_augmentation(prev_img[self.fps:])
@@ -779,13 +749,12 @@ class Dataset_mmu(Dataset):
         self.center_crop = config.dataset.preprocessing.center_crop
         self.mode = config.dataset.und_type
 
-        # 定义固定分辨率列表
         self.fixed_resolutions = [
-            (256, 256),  # 正方形
-            (320, 240),  # 4:3 横向
-            (240, 320),  # 3:4 纵向
-            (368, 256),  # 宽屏
-            (256, 368),  # 窄屏
+            (256, 256),
+            (320, 240),
+            (240, 320),
+            (368, 256),
+            (256, 368),
         ]
 
     def __len__(self):
@@ -796,7 +765,7 @@ class Dataset_mmu(Dataset):
 
     def image_transform(self, image, resolution=None, normalize=True):
         if resolution is None:
-            resolution = (256, 256)  # 默认分辨率
+            resolution = (256, 256)
 
         image = transforms.Resize(resolution, interpolation=transforms.InterpolationMode.BICUBIC)(image)
         image = transforms.ToTensor()(image)
@@ -808,7 +777,6 @@ class Dataset_mmu(Dataset):
 
     def select_resolution(self, original_width, original_height):
         """
-        根据原始图片的宽高选择最接近的固定分辨率。
         """
         aspect_ratio = original_width / original_height
         closest_resolution = min(self.fixed_resolutions, key=lambda res: abs((res[0] / res[1]) - aspect_ratio))
@@ -817,10 +785,7 @@ class Dataset_mmu(Dataset):
     def __getitem__(self, i):
         sample = {}
 
-        # 获取原始图片的宽高
         original_height, original_width = self.datalist[i]['image'].size
-
-        # 选择最接近的分辨率
         resolution = self.select_resolution(original_width, original_height)
 
         sample['image'] = self.image_transform(self.datalist[i]['image'], resolution=resolution)
