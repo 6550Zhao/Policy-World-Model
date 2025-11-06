@@ -114,7 +114,7 @@ def main():
     #########################
     # SETUP Accelerator     #
     #########################
-    config_path = '/configs/sft_navsim/navsim.yaml'
+    config_path = '/19969306550/PWM_github/configs/sft_navsim/navsim.yaml'#'/configs/sft_navsim/navsim.yaml'
     config = OmegaConf.load(config_path)
     config.worker = OmegaConf.load(config.worker)
     # config = get_config()
@@ -153,6 +153,7 @@ def main():
         stream_handler.setFormatter(formatter)
         logging.getLogger().addHandler(stream_handler)
 
+    os.environ["WANDB_MODE"] = "offline"  # debug
     total_batch_size_per_gpu = config.training.batch_size_train_nus #must have context frame tokens
     total_batch_size = config.training.batch_size_train_nus* config.training.gradient_accumulation_steps
 
@@ -376,7 +377,7 @@ def main():
         logger.info(f"only evaluation from ckpt:{path}")
         if path is not None:
 
-            accelerator.print(f"Resuming from checkpoint {path}/unwrapped_model/pytorch_model.bin")
+            accelerator.print(f"Resuming from checkpoint {path}")
             state_dict = torch.load(f'{path}/unwrapped_model/pytorch_model.bin', map_location="cpu")
             model.load_state_dict(state_dict, strict=True)
             del state_dict

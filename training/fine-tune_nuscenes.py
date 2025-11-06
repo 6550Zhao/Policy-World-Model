@@ -108,7 +108,7 @@ def main():
     #########################
     # SETUP Accelerator     #
     #########################
-    config_path = 'configs/sft_nuscenes/nuscenes.yaml'
+    config_path = '/19969306550/PWM_github/configs/sft_nuscenes/nuscenes.yaml' #path/to/nuscenes.config
     config = OmegaConf.load(config_path)
     # config = get_config()
     # Enable TF32 on Ampere GPU
@@ -262,8 +262,8 @@ def main():
 
     if config.model.showo.resume_from_pretrain:
         logger.info('load video pretrain from {}'.format(config.model.showo.resume_from_pretrain))
-        weights = torch.load(config.model.showo.resume_from_pretrain)
-        check_sate = model.load_state_dict(weights, strict=False)
+        # weights = torch.load(config.model.showo.resume_from_pretrain)
+        model.load_state_dict(torch.load(config.model.showo.resume_from_pretrain), strict=False)
     else:
         logger.info('no video pretrain from {}'.format(config.model.showo.resume_from_pretrain))
     ##################################
@@ -375,9 +375,9 @@ def main():
         logger.info(f"only evaluation from ckpt:{path}")
         if path is not None:
 
-            accelerator.print(f"Resuming from checkpoint {path}/unwrapped_model/pytorch_model.bin")
-            state_dict = torch.load(f'{path}/unwrapped_model/pytorch_model.bin', map_location="cpu")
-            model.load_state_dict(state_dict, strict=True)
+            accelerator.print(f"evaluate from checkpoint {path}")
+            # state_dict = torch.load(f'{path}/unwrapped_model/pytorch_model.bin', map_location="cpu")
+            model.load_state_dict(torch.load(f'{path}/unwrapped_model/pytorch_model.bin', map_location="cpu"), strict=True)
             del state_dict
 
     logger.info("Preparing model, optimizer and dataloaders")

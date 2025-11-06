@@ -3,9 +3,9 @@ wandb:
   resume: 'auto'
 
 experiment:
-    project: "sft_nuscenes"
-    name: "sft_nusc_camera_ready"
     base_root: '' #path/to/root
+    project: "sft_nuscenes"
+    name: "sft_planning"
     output_dir: "${experiment.base_root}/resume_checkpoint/sft_nuscenes"
     ablation_name: ""
     max_train_examples_mmu: 50000

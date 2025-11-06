@@ -2,36 +2,15 @@
 import copy
 from dataclasses import dataclass, field
 import json
-import logging
-import pathlib
-from typing import Dict, Optional, Sequence, List
-import PIL
-import itertools
-from vid_dataset.cmd2text import map_category_to_caption
-import torch
-import pickle
-import transformers
-from torch import device
-from torch.utils.data import Dataset
-from pycocotools.coco import COCO
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from PIL import Image
-import random
-from typing import Optional, List, Tuple
-import torchvision.transforms.functional as F
-import torchvision.transforms as transforms
-import cv2
 from torch import Tensor
 from datasets import load_dataset, load_from_disk
 import numpy as np
-from vid_dataset.dataset_config import _get_rawvideo_dec,process_coco_image
-from vid_dataset.dataset_config import OPENDV_LOCAL,OPENDV_LOCAL_val, OPENDV_MINI, DrivingDojo, DrivingDojo_35, OPENDV_FULL, NUSCENES_FRONT, NUSCENES_BACK, NUSCENES_FRONT_LEFT, NUSCENES_FRONT_RIGHT, NUSCENES_BACK_LEFT, NUSCENES_BACK_RIGHT
+from data_utils.dataset_config import _get_rawvideo_dec,process_coco_image
+from data_utils.dataset_config import OPENDV_LOCAL, OPENDV_MINI, OPENDV_FULL, NUSCENES_FRONT, NUSCENES_BACK, NUSCENES_FRONT_LEFT, NUSCENES_FRONT_RIGHT, NUSCENES_BACK_LEFT, NUSCENES_BACK_RIGHT
 import os
 from training.utils import get_config, flatten_omega_conf, image_transform
 from PIL import Image
 from llava.llava import conversation as conversation_lib
-from vid_dataset.cmd2text import diverse_caption_dict, map_category_to_caption, diverse_command_dict
-from nuscenes.nuscenes import NuScenes
 from nuscenes.utils.splits import create_splits_scenes
 import math
 from PIL import UnidentifiedImageError

@@ -116,7 +116,7 @@ def pdsm_score_process(config, score_rows, global_step,logger):
     average_row["valid"] = pdm_score_df["valid"].all()
     pdm_score_df.loc[len(pdm_score_df)] = average_row
 
-    save_path = Path(os.path.join(config.experiment.output_dir, config.experiment.ablation_name))
+    save_path = Path(os.path.join(config.experiment.output_dir))
     timestamp = datetime.now().strftime("%Y.%m.%d.%H.%M.%S")
     pdm_score_df.to_csv(save_path / f"step_{global_step}_{timestamp}.csv")
 

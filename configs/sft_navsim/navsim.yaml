@@ -8,9 +8,8 @@ gpu: True
 experiment:
     base_root: '' #path/to/root
     project: "sft_navsim"
-    name: "navsim"
+    name: "sft_planning"
     output_dir: "${experiment.base_root}/resume_checkpoint/sft_navsim"
-    ablation_name: "sft_navsim"
     max_train_examples_mmu: 50000
     save_every: 5000
     eval_every: 5000
@@ -18,7 +17,7 @@ experiment:
     log_every: 50
     log_grad_norm_every: 500000
     eval_from_checkpoint: True
-    eval_only: False
+    eval_only: True #False
     resume_dir: ""
     img_show_path: '${experiment.base_root}/visual_show/sft/navsim'
     text_root: '${experiment.base_root}/resume_checkpoint/sft_navsim/text_pair'
