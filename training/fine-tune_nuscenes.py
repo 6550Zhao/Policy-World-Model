@@ -108,7 +108,7 @@ def main():
     #########################
     # SETUP Accelerator     #
     #########################
-    config_path = '/19969306550/PWM_github/configs/sft_nuscenes/nuscenes.yaml' #path/to/nuscenes.config
+    config_path = 'configs/sft_nuscenes/nuscenes.yaml' #path/to/nuscenes.config
     config = OmegaConf.load(config_path)
     # config = get_config()
     # Enable TF32 on Ampere GPU

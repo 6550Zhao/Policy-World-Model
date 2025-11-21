@@ -38,6 +38,13 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="ubuntu@10.7.59.76:22 password (2)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/ubuntu/projects/zzd_file/rl/project1" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="ubuntu@3090.fas-servers.xyz:22 password">
         <serverdata>
           <mappings>

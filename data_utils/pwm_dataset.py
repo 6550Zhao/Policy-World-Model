@@ -200,19 +200,13 @@ class DatasetNuScenes(Dataset):#camera ready dataset
                  ):
         super(DatasetNuScenes, self).__init__()
         assert config.dataset.ctd.nuscenes_data_path is not None, "Either nusc or nuscenes_data_path"
-
-        # self.nusc = NuScenes(version=version, dataroot=config.dataset.ctd.nuscenes_data_path, verbose=True)
-        with open(os.path.join(config.dataset.ctd.anno_path, f'nuscenes2d_ego_temporal_infos_{split}.pkl'), 'rb') as f:
-            self.nus_ori_annos = pickle.load(f)['infos']
+        # with open(os.path.join(config.dataset.ctd.anno_path, f'nuscenes2d_ego_temporal_infos_{split}.pkl'), 'rb') as f:
+        #     self.nus_ori_annos = pickle.load(f)['infos']
         self.omini_anno_root = config.dataset.ctd.anno_path  # [[conv[qas]]]
-        # with open(os.path.join(config.dataset.ctd.omini_path, f'plan_{split}_filter_w_ego_w_cmd_1s_to_17s.json'), 'r') as f:
-        #     self.omini_annos = json.load(f)
-
         self.scenes = create_splits_scenes()
         with open(os.path.join(config.dataset.ctd.image_file, f'CAM_FRONT_{split}_imgs_path.json'), 'r')as f:
             self.image_path = json.load(f)
         self.image_root = config.dataset.ctd.image_root
-        # assert len(self.nus_ori_annos) == (len(self.omini_annos)+10)
         if split == 'train':
             with open(os.path.join(config.dataset.ctd.omini_path, f'plan_{split}_filter_w_ego_w_cmd_1s_to_19s.json'), 'r') as f:
                 self.omini_annos = json.load(f)
@@ -490,7 +484,7 @@ class DatasetNuScenes(Dataset):#camera ready dataset
         sample['ego_status'] = torch.tensor(omini_anno[-2]['ego_status'], dtype=torch.float32)
         sample['H_cmd'] = torch.tensor(omini_anno[-2]['plan_command'], dtype=torch.int64)
         sample['scene_name'] = scene_name
-        assert self.nus_ori_annos[omini_anno[-2]['id']]['token']==token
+        # assert self.nus_ori_annos[omini_anno[-2]['id']]['token']==token
         return sample
 
 class DatasetNavsim(Dataset):
