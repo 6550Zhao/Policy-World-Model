@@ -114,7 +114,7 @@ def main():
     #########################
     # SETUP Accelerator     #
     #########################
-    config_path = '/19969306550/PWM_github/configs/sft_navsim/navsim.yaml'#'/configs/sft_navsim/navsim.yaml'
+    config_path = configs/sft_navsim/navsim.yaml'#'/configs/sft_navsim/navsim.yaml'
     config = OmegaConf.load(config_path)
     config.worker = OmegaConf.load(config.worker)
     # config = get_config()
