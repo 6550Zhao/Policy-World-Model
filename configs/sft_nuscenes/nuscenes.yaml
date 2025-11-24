@@ -34,7 +34,7 @@ experiment:
       max_decode_batchsize: 2
       use_text_metrics: True
       use_trj_metrics: True
-      trj_anno_path: "${experiment.base_root}/dataset/nuscenes/data_nusc/nuscenes2d_ego_temporal_infos_val.pkl"
+      trj_anno_path: "${experiment.base_root}/dataset/nuscenes/nuscenes2d_ego_temporal_infos_val.pkl"
       eval_dir: ""# path/to/ckpt
 
 model:
@@ -95,10 +95,9 @@ dataset:
       split_frames: 5
       prev_frames: 12
       next_frames: 12 #12
-      anno_path: '${experiment.base_root}/dataset/nuscenes/data_nusc'
-      omini_path: '${experiment.base_root}/dataset/nuscenes/ominidrive'
+#      omini_path: '${experiment.base_root}/dataset/nuscenes/ominidrive'
       image_file: '${experiment.base_root}/dataset/nuscenes'
-      image_root: '/nuscenes'
+#      image_root: '/nuscenes'
       views:
 #        'NUSCENES_FRONT': 'nuscenes_front'
         #      'NUSCENES_BACK': 'nuscenes_back'

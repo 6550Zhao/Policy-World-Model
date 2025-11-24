@@ -202,24 +202,24 @@ class DatasetNuScenes(Dataset):#camera ready dataset
         assert config.dataset.ctd.nuscenes_data_path is not None, "Either nusc or nuscenes_data_path"
         # with open(os.path.join(config.dataset.ctd.anno_path, f'nuscenes2d_ego_temporal_infos_{split}.pkl'), 'rb') as f:
         #     self.nus_ori_annos = pickle.load(f)['infos']
-        self.omini_anno_root = config.dataset.ctd.anno_path  # [[conv[qas]]]
+        # self.omini_anno_root = config.dataset.ctd.anno_path  # [[conv[qas]]]
         self.scenes = create_splits_scenes()
         with open(os.path.join(config.dataset.ctd.image_file, f'CAM_FRONT_{split}_imgs_path.json'), 'r')as f:
             self.image_path = json.load(f)
-        self.image_root = config.dataset.ctd.image_root
+        # self.image_root = config.dataset.ctd.image_root
         if split == 'train':
-            with open(os.path.join(config.dataset.ctd.omini_path, f'plan_{split}_filter_w_ego_w_cmd_1s_to_19s.json'), 'r') as f:
+            with open(os.path.join(config.dataset.ctd.image_file, 'ominidrive', f'plan_{split}_filter_w_ego_w_cmd_1s_to_19s.json'), 'r') as f:
                 self.omini_annos = json.load(f)
             self.scenes = self.scenes['train']
         elif split == 'val':
             if scene_split:
-                with open(os.path.join(config.dataset.ctd.omini_path, 'val_saparate_scene/val_1s_20s.json'), 'r') as f:
+                with open(os.path.join(config.dataset.ctd.image_file, 'ominidrive', 'val_saparate_scene/val_1s_20s.json'), 'r') as f:
                     omini_annos = json.load(f)
                 assert scene_name is not None, "require scene name"
                 self.omini_annos = omini_annos[scene_name]
             else:
                 # with open(os.path.join(config.dataset.ctd.omini_path, f'plan_{split}_filter_w_ego_w_cmd_1s_to_20s.json'), 'r') as f:
-                with open(os.path.join(config.dataset.ctd.omini_path, f'plan_{split}_filter_w_ego_w_cmd_1s_to_19s.json'), 'r') as f:
+                with open(os.path.join(config.dataset.ctd.image_file, 'ominidrive', f'plan_{split}_filter_w_ego_w_cmd_1s_to_19s.json'), 'r') as f:
                     self.omini_annos = json.load(f)
             self.scenes = self.scenes['val']
         else:
@@ -331,22 +331,6 @@ class DatasetNuScenes(Dataset):#camera ready dataset
         i = (height - h) // 2
         j = (width - w) // 2
         return i, j, h, w
-    def get_image_path(self, sample_dict, current_index, dataset_name):
-        if dataset_name == 'drivingdojo'or dataset_name == 'drivingdojo_35':
-            frame_path = sample_dict["videos"][current_index].split('videos/')[-1]
-            subfile = sample_dict['subfile']
-            return os.path.join(self.video_path[dataset_name],'videos',subfile, frame_path)
-        elif dataset_name == 'opendv' or dataset_name == 'opendvmini':
-            first_frame = sample_dict["first_frame"]
-            idx_str, ext_str = first_frame.split(".")
-            format_length = len(idx_str)
-            file_name = str(int(idx_str) + current_index).zfill(format_length) + "." + ext_str
-            return os.path.join(self.video_path[dataset_name], sample_dict["folder"], file_name)
-        elif dataset_name == 'nuscenes':
-            frame_path = sample_dict["data"][current_index]
-            return os.path.join(self.video_path['nuscenes_front'], frame_path)#because all nucscenes data save in the same root
-        else:
-            raise NotImplementedError
     def get_segment(self, num_frames, start_index, end_index, select_num, short_flag=False, mode=None):
         start_index = start_index
         end_index = end_index
@@ -408,16 +392,16 @@ class DatasetNuScenes(Dataset):#camera ready dataset
         current_observe = []
         if len(images_prev_root) >= len_prev_max:
             for i in range(len_prev_max):
-                prev_img.append(self._load_image(os.path.join(self.image_root,images_prev_root[i-len_prev_max])))
+                prev_img.append(self._load_image(os.path.join(self.image_file,images_prev_root[i-len_prev_max])))
         else:
             for i in range(len(images_prev_root)):
-                prev_img.append(self._load_image(os.path.join(self.image_root, images_prev_root[i - len(images_prev_root)])))
+                prev_img.append(self._load_image(os.path.join(self.image_file, images_prev_root[i - len(images_prev_root)])))
         if len(images_next_root) >= len_next_max:
             for i in range(len_next_max):
-                next_img.append(self._load_image(os.path.join(self.image_root, images_next_root[i])))
+                next_img.append(self._load_image(os.path.join(self.image_file, images_next_root[i])))
         else:
             for i in range(len(images_next_root)):
-                next_img.append(self._load_image(os.path.join(self.image_root, images_next_root[i])))
+                next_img.append(self._load_image(os.path.join(self.image_file, images_next_root[i])))
         return prev_img, next_img
     def command_to_text(self,command):
 

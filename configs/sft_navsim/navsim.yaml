@@ -70,9 +70,9 @@ dataset:
     dataset_use: "sft_navsim"
     clip_img_token: -200
     clip_vq_token: -100
-    nuplan_10hz_blobs: '/navsim_data/nuplan_scene_blobs'
+    nuplan_10hz_blobs: '${experiment.base_root}/dataset/navsim/nuplan_scene_blobs'
     nuplan_10hz_logs: '${experiment.base_root}/dataset/navsim/nuplan_img_logs'
-    navsim_root: '/navsim_data'
+    navsim_root: '${experiment.base_root}/dataset/navsim'
     navsim_log_path: ''
     logs_file:
         train_split: 'trainval'
