@@ -55,6 +55,91 @@
 - [ ] Provide guidelines
 
 ---
+## Guidlines
+This guide provides step-by-step instructions for fine-tuning and evaluating the Policy-World-Model (PWM) on NuScenes and NavSim datasets. Ensure you have completed the environment setup and data preparation before proceeding.
+### 1. Clone the Repository
+First, clone the repository and navigate to the project root directory:
+```
+git clone https://github.com/6550Zhao/Policy-World-Model.git
+cd Policy-World-Model  # Enter the project folder (replace with your actual path if needed)
+```
+### 2. Create & Activate Conda Environment
+Create and activate the environment with the provided environment.yaml:
+```
+# Create environment from the configuration file
+conda env create -f environment.yaml
+
+# Activate the PWM environment (name: pwm)
+conda activate pwm
+```
+### 3. Data Preparation
+#### 3.1 Required Data Files
+Download the following resources to run fine-tuning/evaluation:
+
+Pre-trained weights: Download from the official website (link to be provided).
+
+Dataset files: Download partial dataset files from the specified source (link to be provided).
+
+#### 3.2 Dataset Directory Structure
+
+Organize your dataset folder as follows (ensure the path matches the configuration in yaml files):
+```
+dataset/
+├── nuscenes/
+│   ├── maps/
+│   ├── samples/
+│   ├── sweeps/
+│   └── ominidrive/
+└── navsim/
+    ├── maps/
+    ├── cache/
+    ├── navsim_logs/
+    ├── sensor_blobs/
+    ├── nuplan_img_logs/
+    ├── nuplan_scene_blobs/
+    │   ├── 10hz_train/
+    │   │   ├── 2021.05.12.19.36.12_veh-35_00005_00204/
+    │   │   ├── 2021.05.12.19.36.12_veh-35_00215_00405/
+    │   │   └── ... (other training scenes)
+    │   ├── 10hz_test/
+    │   └── 10hz_val/
+```
+### 4. Evaluation
+4.1 Evaluate on NuScenes
+Modify the configuration file to enable evaluation mode:
+Open configs/sft_nuscenes/nuscenes.yaml
+Set experiment.eval_only = True (ensure no extra spaces or syntax errors)
+Run the evaluation script:
+```
+bash scripts/finetune/nuscenes/run_sft_nusc_no_ego_baseline.sh
+```
+4.2 Evaluate on NavSim
+Modify the configuration file to enable evaluation mode:
+Open configs/sft_nuscenes/nuscenes.yaml
+Set experiment.eval_only = True
+Run the evaluation script:
+```
+bash scripts/finetune/navsim/run_sft_navsim_baseline.sh
+```
+### 5. Fine-tuning
+5.1 Fine-tune on NuScenes
+Modify the configuration file to enable training mode:
+Open configs/sft_nuscenes/nuscenes.yaml
+Set experiment.eval_only = False
+Start fine-tuning:
+```
+bash scripts/finetune/nuscenes/run_sft_nusc_no_ego_baseline.sh
+```
+5.2 Fine-tune on NavSim
+Modify the configuration file to enable training mode:
+Open configs/sft_nuscenes/nuscenes.yaml
+Set experiment.eval_only = False
+Start fine-tuning:
+```
+bash scripts/finetune/navsim/run_sft_navsim_baseline.sh
+```
+
+---
 ## 🧠 Models
 You can download the released model weights from the following link:
 ---
