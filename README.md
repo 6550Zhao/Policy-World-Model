@@ -76,9 +76,9 @@ conda activate pwm
 #### 3.1 Required Data Files
 Download the following resources to run fine-tuning/evaluation:
 
-Pre-trained weights: Download from the official website (link to be provided).
+Pre-trained weights: Download from the official website ([Download](https://huggingface.co/zzzz12334/Policy_World_Model/tree/main)).
 
-Dataset files: Download partial dataset files from the specified source (link to be provided).
+Dataset files: Download dataset files from the specified source (for convenience, some required additional dataset files are available for download here: [Download](https://huggingface.co/datasets/talas/pwm_datasets/tree/main)).
 
 #### 3.2 Dataset Directory Structure
 
@@ -89,13 +89,13 @@ dataset/
 │   ├── maps/
 │   ├── samples/
 │   ├── sweeps/
-│   └── ominidrive/
+│   └── ominidrive/ # Download from the provided link
 └── navsim/
     ├── maps/
     ├── cache/
     ├── navsim_logs/
     ├── sensor_blobs/
-    ├── nuplan_img_logs/
+    ├── nuplan_img_logs/ # Download from the provided link
     ├── nuplan_scene_blobs/
     │   ├── 10hz_train/
     │   │   ├── 2021.05.12.19.36.12_veh-35_00005_00204/
